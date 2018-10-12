@@ -1,0 +1,39 @@
+{extends file=$conf->root_path|cat:"/templates/main.html"}
+
+{block name=top}
+
+<div class="bottom-margin">
+<form action="{$conf->action_root}gameSave" method="post" class="pure-form pure-form-aligned" style="margin:0 auto; width: 400px; background-color: rgba(102, 102, 102, 0.6); border-radius: 5px; padding: 25px;">
+	<fieldset>
+		<legend>Dane gry</legend>
+		<div class="pure-control-group">
+            <label for="name">Tytuł</label>
+            <input id="name" type="text" placeholder="Tytuł" name="tytul" value="{$form->name}">
+        </div>
+		<div class="pure-control-group">
+            <label for="genre">Gatunek</label>
+            <input id="genre" type="text" placeholder="Gatunek" name="gatunek" value="{$form->genre}">
+        </div>
+	<div class="pure-control-group">
+            <label for="birthdate">Data wydania</label>
+            <input id="birthdate" type="text" placeholder="Data utworzenia" name="rok_produkcji" value="{$form->birthdate}">
+        </div>
+		<div class="pure-control-group">
+		        <label for="dev">Developer</label>
+						<select id="dev" type="text" placeholder="Developer" name="developer" value="{$form->dev}">
+						{foreach $devs as $dev}
+							<option value='{$dev["ID"]}'>{$dev["nazwa"]}</option>
+						{/foreach}
+						</select>
+		        <!--<input id="dev" type="text" placeholder="Developer" name="developer" value="{$form->dev}">-->
+		 		</div>
+		<div class="pure-controls" style="margin: 0 auto; width: 170px; margin-top: 25px;">
+			<input type="submit" class="pure-button pure-button-primary" value="Zapisz"/>
+			<a class="pure-button button-secondary" href="{$conf->action_root}gameList">Powrót</a>
+		</div>
+	</fieldset>
+    <input type="hidden" name="ID" value="{$form->id}">
+</form>
+</div>
+
+{/block}

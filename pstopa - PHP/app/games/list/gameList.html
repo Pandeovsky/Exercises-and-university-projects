@@ -1,0 +1,26 @@
+{extends file=$conf->root_path|cat:"/templates/main.html"}
+
+{block name=top}
+
+<div class="bottom-margin">
+<form id="searchForm" class="pure-form pure-form-stacked" onsubmit="ajaxPostForm('searchForm','{$conf->action_root}gameListPart','tab_games'); return false;">
+	<legend>WYSZUKIWANIE</legend>
+	<fieldset>
+		<input type="text" placeholder="Tytuł gry" name="sf_tytul" value="{$searchForm->name}" /><br />
+		<button type="submit" class="pure-button pure-button-primary">Szukaj!</button>
+	</fieldset>
+</form>
+</div>
+
+{/block}
+
+{block name=bottom}
+{if in_array("admin", $conf->roles)}
+<div class="bottom-margin">
+<a class="pure-button button-success" href="{$conf->action_root}gameNew" style="float: right;">+Nowa gra</a>
+<a class="pure-button button-success" href="{$conf->action_root}devNew" style="float: right;">+Nowy developer</a>
+</div>
+{/if}
+{include file=$conf->root_path|cat:"/app/games/list/gameListPart.html"}
+
+{/block}

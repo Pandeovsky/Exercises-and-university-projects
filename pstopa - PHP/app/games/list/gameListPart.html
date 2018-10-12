@@ -1,0 +1,45 @@
+<table id="tab_games" class="pure-table pure-table-bordered"  style="margin: 0 auto; width: 80%; background-color: white;">
+<thead>
+	<tr>
+		<th>Tytuł</th>
+		<th>Gatunek</th>
+		<th>Data wydania</th>
+		<th>developer</th>
+		<th>Ocena</th>
+		{if (in_array("admin",$conf->roles) || in_array("user",$conf->roles))}
+		<th>Opcje</th>
+		{/if}
+	</tr>
+</thead>
+<tbody>
+{foreach $games as $g}
+{strip}
+	<tr>
+		<td>{$g["tytul"]}</td>
+		<td>{$g["gatunek"]}</td>
+		<td>{$g["rok_produkcji"]}</td>
+		<td>{$g["developer"]}</td>
+		<td>{$g["ocena"]}</td>
+		{if in_array("admin", $conf->roles)}
+		<td>
+			<a class="button-small pure-button button-secondary" href="{$conf->action_url}gameEdit&id={$g['ID']}">Edytuj</a>
+			&nbsp;
+			<a class="button-small pure-button button-warning" onclick="confirmLink('{$conf->action_url}gameDelete&id={$g['ID']}','Czy na pewno usunąć rekord ?')">Usuń</a>
+		</td>
+		{elseif in_array("user", $conf->roles)}
+		<td>
+			<!-- todo: fix "Add note" url-->
+			<a class="button-small pure-button button-secondary" href="{$conf->action_url}gameNote&id_game={$g['ID']}">Oceń</a>
+		</td>
+		{/if}
+	</tr>
+{/strip}
+{/foreach}
+</tbody>
+	{if ($cp > 1)}
+	<a class="button-small pure-button button-secondary" href="{$conf->action_url}loadpages&current_page={($cp-1)}"><</a>
+	{/if}
+	{if ($cp < $tl)}
+	<a class="button-small pure-button button-secondary" href="{$conf->action_url}loadpages&current_page={($cp+1)}">></a>
+	{/if}
+</table>

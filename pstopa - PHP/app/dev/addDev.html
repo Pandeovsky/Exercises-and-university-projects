@@ -1,0 +1,23 @@
+{extends file=$conf->root_path|cat:"/templates/main.html"}
+
+{block name=top}
+
+<div class="bottom-margin">
+<form action="{$conf->action_root}devSave" method="post" class="pure-form pure-form-aligned" style="margin:0 auto; width: 400px; background-color: rgba(102, 102, 102, 0.6); border-radius: 5px; padding: 25px;">
+	<fieldset>
+		<legend>Dodaj Developera</legend>
+		<div class="pure-control-group">
+            <label for="name">Developer</label>
+            <input id="name" type="text" placeholder="developer" name="dev" value="{$form->name}">
+        </div>
+
+		<div class="pure-controls" style="margin: 0 auto; width: 170px; margin-top: 25px;">
+			<input type="submit" class="pure-button pure-button-primary" value="Zapisz"/>
+			<a class="pure-button button-secondary" href="{$conf->action_root}gameList">Powrót</a>
+		</div>
+	</fieldset>
+    <input type="hidden" name="ID" value="{$form->id}">
+</form>
+</div>
+
+{/block}
